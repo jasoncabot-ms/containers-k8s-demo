@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aci-helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aci-helloworld-app
+  template:
+    metadata:
+      labels:
+        app: aci-helloworld-app
+    spec:
+      containers:
+      - name: aci-helloworld-container
+        image: mcr.microsoft.com/azuredocs/aci-helloworld:latest
+        ports:
+        - containerPort: 80

@@ -1,0 +1,3 @@
+[submodule "aci-helloworld"]
+	path = aci-helloworld
+	url = git@github.com:Azure-Samples/aci-helloworld.git
