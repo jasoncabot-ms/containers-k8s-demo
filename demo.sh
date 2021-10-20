@@ -7,6 +7,9 @@ docker run --rm -it --name aci mcr.microsoft.com/azuredocs/aci-helloworld
 # We must map port since app is listening on 80
 docker run --rm -it -p 8080:80 --name aci mcr.microsoft.com/azuredocs/aci-helloworld
 
+# Look how you can set environment variables
+docker run --rm -it -p 8080:1234 -e "PORT=1234" --name aci mcr.microsoft.com/azuredocs/aci-helloworld
+
 # Jump into a running container and modify it
 docker exec -it aci /bin/sh
 
