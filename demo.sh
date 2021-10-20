@@ -1,10 +1,21 @@
+# Run a pre-built image, no code
 docker run mcr.microsoft.com/mcr/hello-world
 
 # App can run without modification
-# We must map port since app is listening on 80
-docker run -it -p 8080:80 mcr.microsoft.com/azuredocs/aci-helloworld
-docker exec -it image /bin/sh
+docker run --rm -it --name aci mcr.microsoft.com/azuredocs/aci-helloworld
 
+# We must map port since app is listening on 80
+docker run --rm -it -p 8080:80 --name aci mcr.microsoft.com/azuredocs/aci-helloworld
+
+# Jump into a running container and modify it
+docker exec -it aci /bin/sh
+
+# Build our own application
+cd hello-world
+docker build . -t shell-hello-world:v1
+docker run -it shell-hello-world:v1
+
+# AKS!
 
 # Now lets deploy to k8s
 az login --tenant TENANT_ID
